@@ -24465,11 +24465,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caddb78be44536744a2dbfa7bdc60aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: 2
   movementSpeed: 2
   currDirection: 0
   flashRange: 2
   flashCD: 5
+  hookRadius: 2
+  hookWidth: 0
 --- !u!212 &1787379283
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -24633,7 +24634,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd57a563d9df7ff419140c0998b8f0a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: 2
   movementSpeed: 2
   currDirection: 0
 --- !u!212 &2022563237
