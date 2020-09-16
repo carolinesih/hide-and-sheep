@@ -58,8 +58,10 @@ namespace TimeArithmetic {
 
         void Hook() {
             Sheep[] sheep = FindObjectsOfType(typeof(Sheep)) as Sheep[];
-            foreach(Sheep individual in sheep) {
-                UnityEngine.Debug.Log("bo peep is at " + transform.position + " and sheep is at " + individual.transform.position);
+            foreach(Sheep individual in sheep)
+            {
+                //UnityEngine.Debug.Log("bo peep is at " + transform.position + " and sheep is at " + individual.transform.position);
+
                 if  (
                     Math.Abs(transform.position.x - individual.transform.position.x) < hookRadius && 
                     Math.Abs(transform.position.y - individual.transform.position.y) < hookRadius) {
@@ -88,9 +90,8 @@ namespace TimeArithmetic {
 
             TileBase dt = destructableTileMap.GetTile(destructableTileMap.WorldToCell(endDest));
             TileBase it = indestructableTileMap.GetTile(indestructableTileMap.WorldToCell(endDest));
-            TileBase tt = teleporterTileMap.GetTile(teleporterTileMap.WorldToCell(endDest));
 
-            if (dt == null && it == null && tt == null) {
+            if (dt == null && it == null) {
                 transform.position = endDest;
                 lastFlashTime = DateTime.Now;
             } else {
@@ -98,9 +99,8 @@ namespace TimeArithmetic {
                 endDest = transform.position + vector;
                 dt = destructableTileMap.GetTile(destructableTileMap.WorldToCell(endDest));
                 it = indestructableTileMap.GetTile(indestructableTileMap.WorldToCell(endDest));
-                tt = teleporterTileMap.GetTile(teleporterTileMap.WorldToCell(endDest));
 
-                if (dt == null && it == null && tt == null) {
+                if (dt == null && it == null) {
                     transform.position = endDest;
                     lastFlashTime = DateTime.Now;
                 }
