@@ -56,7 +56,7 @@ public class BaseMovement : MonoBehaviour {
             if (direct % 2 == 0) {
                 transform.position += moveDir * movementSpeed * Time.deltaTime;
             } else {
-                transform.position += moveDir * movementSpeed * Time.deltaTime * Mathf.Sqrt(2);
+                transform.position += moveDir * movementSpeed * Time.deltaTime / Mathf.Sqrt(2);
             }
         }
     }
