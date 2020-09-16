@@ -5,11 +5,12 @@ using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace TimeArithmetic {
     public class BoPeep : BaseMovement {
 
-        public int flashRange;
+        public float flashRange;
         public int flashCD; // in seconds
         private DateTime lastFlashTime = DateTime.Now;
 
@@ -32,7 +33,6 @@ namespace TimeArithmetic {
             }
         }
 
-
         bool canFlash() {
             if (lastFlashTime.AddSeconds(flashCD) <= DateTime.Now) {
                 return true;
@@ -46,16 +46,25 @@ namespace TimeArithmetic {
             lastFlashTime = DateTime.Now;
             int[] flashDirection = directions[(int)base.currDirection];
 
+            float[] res = new float[flashDirection.Length];
             for (int i = 0; i < flashDirection.Length; i++) {
-                flashDirection[i] *= flashRange;
+                res[i] = flashDirection[i] * flashRange;
+                if ((int)base.currDirection % 2 == 1) {
+                    res[i] /= (float)Math.Sqrt(2);
+                }
             }
-            UnityEngine.Debug.Log(transform.position);
-            UnityEngine.Debug.Log(flashDirection);
-            UnityEngine.Debug.Log(transform.position);
 
-            Vector3 vector = new Vector3(flashDirection[0], flashDirection[1], 0);
+            Vector3 vector = new Vector3(res[0], res[1], 0);
 
-            transform.position += vector;
+            Vector3 endDest = transform.position + vector;
+            
+            Collider2D collision = Physics2D.OverlapCircle(new Vector2(endDest.x, endDest.y), .001f);
+            if (collision == null) {
+                transform.position = endDest;
+            } else {
+                Vector3 closestPoint = collision.ClosestPoint(transform.position);
+                transform.position = closestPoint;
+            }
         }
 
         void Catch() {
