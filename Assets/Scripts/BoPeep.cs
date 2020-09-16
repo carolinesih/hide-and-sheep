@@ -12,6 +12,8 @@ namespace TimeArithmetic {
 
         public float flashRange;
         public int flashCD; // in seconds
+        public int hookRadius; // radius hook can reach
+        public int hookWidth; // width of range hook can reach (ex. 30 degrees)
         private DateTime lastFlashTime = DateTime.Now;
 
         // Start is called before the first frame update
@@ -25,7 +27,7 @@ namespace TimeArithmetic {
             // UnityEngine.Debug.Log("position: " + transform.position);
             // UnityEngine.Debug.Log("direction: " + base.currDirection);
             if (Input.GetKey(KeyCode.D)) {
-                
+                Hook();
             }
 
             if (Input.GetKey(KeyCode.F) && canFlash()) {
@@ -40,6 +42,19 @@ namespace TimeArithmetic {
             return false;
         }
 
+        void Hook() {
+            Sheep[] sheep = FindObjectsOfType(typeof(Sheep)) as Sheep[];
+            foreach(Sheep individual in sheep)
+            {
+                UnityEngine.Debug.Log("bo peep is at " + transform.position + " and sheep is at " + individual.transform.position);
+                if  (
+                    Math.Abs(transform.position.x - individual.transform.position.x) < hookRadius && 
+                    Math.Abs(transform.position.y - individual.transform.position.y) < hookRadius)
+                {
+                    individual.MoveToJail();
+                }
+            }
+        }
 
         // Ability to Flash over Walls 
         void Flash() {

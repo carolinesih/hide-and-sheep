@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class BaseMovement : MonoBehaviour {
 
-    public int rotateSpeed;
     public int movementSpeed;
    
     public enum Direction {North=0, NorthEast=1, East=2, SouthEast=3, South=4, SouthWest=5, West=6, NorthWest=7};
@@ -37,24 +36,28 @@ public class BaseMovement : MonoBehaviour {
         int x = 0;
         int y = 0;
         if (Input.GetKey(KeyCode.RightArrow)) {
-            transform.Translate(Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime, 0, 0);
             x += 1;
         }
         if (Input.GetKey(KeyCode.LeftArrow)) {
-            transform.Translate(Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime, 0, 0);
             x -= 1;
         }
         if (Input.GetKey(KeyCode.UpArrow)) {
-            transform.Translate(0, Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime, 0);
             y += 1;
         }
         if (Input.GetKey(KeyCode.DownArrow)) {
-            transform.Translate(0, Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime, 0);
             y -= 1;
         }
 
         if (x != 0 || y != 0) {
             FacingDirection(x, y);
+
+            int direct = (int) currDirection;
+            Vector3 moveDir = new Vector3(directions[direct][0], directions[direct][1], 0);
+            if (direct % 2 == 0) {
+                transform.position += moveDir * movementSpeed * Time.deltaTime;
+            } else {
+                transform.position += moveDir * movementSpeed * Time.deltaTime * Mathf.Sqrt(2);
+            }
         }
     }
 
