@@ -44,17 +44,14 @@ public class Sheep : BaseMovement {
     }
 
     bool canDestroyRock() {
-        if (lastBreakTime.AddSeconds(rockCD) <= DateTime.Now) {
-            return true;
-        }
-        return false;
+        return lastBreakTime.AddSeconds(rockCD) <= DateTime.Now;
     }
 
     void DestroyRock() {
         // Destroys the rock in front of you
         UnityEngine.Debug.Log("DestroyRock Called");
         lastBreakTime = DateTime.Now;
-        
+
         int[] playerDirection = directions[(int)base.currDirection];
 
         float[] res = new float[playerDirection.Length];
