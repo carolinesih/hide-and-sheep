@@ -10,29 +10,51 @@ using UnityEngine.Tilemaps;
 public class Sheep : BaseMovement {
 
     public Tilemap destructableTilemap;
+    public Tilemap teleporterTilemap;
+
+    public int rockCD;
+    public int teleportCD;
+
+    private DateTime lastBreakTime = DateTime.Now;
+    private DateTime lastTPTime = DateTime.Now;
+
+    private ArrayList teleporters = new ArrayList();
+    private ArrayList teleporterCoord = new ArrayList();
+
+    private int[] teleporterMapping = new int[] {
+        5, 3, 4, 1, 2, 0
+    };
 
     // Start is called before the first frame update
     void Start() {
-
+        getTeleporters();
     }
 
     // Update is called once per frame
     void Update() {
         base.Update();
 
-        if (Input.GetKey(KeyCode.D)) {
+        if (Input.GetKey(KeyCode.D) && canDestroyRock()) {
             DestroyRock();
         }
 
-        if (Input.GetKey(KeyCode.F)) {
+        if (Input.GetKey(KeyCode.F) && canTeleport()) {
             Teleport();
         }
+    }
+
+    bool canDestroyRock() {
+        if (lastBreakTime.AddSeconds(rockCD) <= DateTime.Now) {
+            return true;
+        }
+        return false;
     }
 
     void DestroyRock() {
         // Destroys the rock in front of you
         UnityEngine.Debug.Log("DestroyRock Called");
-
+        lastBreakTime = DateTime.Now;
+        
         int[] playerDirection = directions[(int)base.currDirection];
 
         float[] res = new float[playerDirection.Length];
@@ -52,9 +74,43 @@ public class Sheep : BaseMovement {
         }
     }
 
+    bool canTeleport() {
+        return lastTPTime.AddSeconds(teleportCD) <= DateTime.Now;
+    }
+
     void Teleport() {
         // Well teleports across the map
+ 
+        //UnityEngine.Debug.Log("Teleport Called");
+
+        TileBase t = teleporterTilemap.GetTile(Vector3Int.FloorToInt(transform.position));
+
+        if (t != null) {
+            lastTPTime = DateTime.Now;
+            int tpID = teleporters.IndexOf(t.GetInstanceID());
+            int newTPID = teleporterMapping[tpID];
+            transform.position = (Vector3) teleporterCoord[newTPID];
+        } 
+
     }
+
+    // initialize teleporter array
+    void getTeleporters() {
+
+        Vector3Int o = teleporterTilemap.origin;
+        BoundsInt bounds = teleporterTilemap.cellBounds;
+        TileBase[] allTiles = teleporterTilemap.GetTilesBlock(bounds);
+        for (int i = 0; i < bounds.size.x; i++) {
+            for (int j = 0; j < bounds.size.y; j++) {
+                TileBase t = allTiles[i + j * bounds.size.x];
+                if (t != null) {
+                    teleporters.Add(t.GetInstanceID());
+                    teleporterCoord.Add(new Vector3(o.x + i, o.y + j,0));
+                }
+            }
+        }
+    }
+
     public void MoveToJail() {
     	Vector3 newLocation = new Vector3((float) 2.5, (float) -1.5, 0);
     	transform.position = newLocation;
