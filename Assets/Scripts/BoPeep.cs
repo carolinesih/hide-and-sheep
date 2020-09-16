@@ -46,7 +46,7 @@ namespace TimeArithmetic {
             Sheep[] sheep = FindObjectsOfType(typeof(Sheep)) as Sheep[];
             foreach(Sheep individual in sheep)
             {
-                UnityEngine.Debug.Log("bo peep is at " + transform.position + " and sheep is at " + individual.transform.position);
+                //UnityEngine.Debug.Log("bo peep is at " + transform.position + " and sheep is at " + individual.transform.position);
                 if  (
                     Math.Abs(transform.position.x - individual.transform.position.x) < hookRadius && 
                     Math.Abs(transform.position.y - individual.transform.position.y) < hookRadius)
