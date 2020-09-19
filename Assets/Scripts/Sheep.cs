@@ -27,6 +27,8 @@ public class Sheep : BaseMovement {
 
     // Start is called before the first frame update
     void Start() {
+        destructableTilemap = GameObject.FindGameObjectWithTag("tilemap_destructible").GetComponent<Tilemap>();
+        teleporterTilemap = GameObject.FindGameObjectWithTag("tilemap_teleporter").GetComponent<Tilemap>();
         getTeleporters();
     }
 

@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - tilemap_destructible
+  - tilemap_base
+  - tilemap_indestructible
+  - tilemap_teleporter
+  - tilemap_jail
   layers:
   - Default
   - TransparentFX

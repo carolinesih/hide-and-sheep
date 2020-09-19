@@ -21,11 +21,11 @@ namespace TimeArithmetic {
 
         public Tilemap destructableTileMap;
         public Tilemap indestructableTileMap;
-        public Tilemap teleporterTileMap;
 
         // Start is called before the first frame update
         void Start() {
-
+            destructableTileMap = GameObject.FindGameObjectWithTag("tilemap_destructible").GetComponent<Tilemap>();
+            indestructableTileMap = GameObject.FindGameObjectWithTag("tilemap_indestructible").GetComponent<Tilemap>();
         }
 
         // Update is called once per frame
