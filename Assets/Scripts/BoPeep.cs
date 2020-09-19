@@ -7,6 +7,7 @@ using System.Net.NetworkInformation;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Photon.Pun;
 
 namespace TimeArithmetic {
     public class BoPeep : BaseMovement {
@@ -21,15 +22,25 @@ namespace TimeArithmetic {
 
         public Tilemap destructableTileMap;
         public Tilemap indestructableTileMap;
+        public Tilemap jailTileMap;
+
+        private PhotonView PV;
+
 
         // Start is called before the first frame update
         void Start() {
             destructableTileMap = GameObject.FindGameObjectWithTag("tilemap_destructible").GetComponent<Tilemap>();
             indestructableTileMap = GameObject.FindGameObjectWithTag("tilemap_indestructible").GetComponent<Tilemap>();
+            jailTileMap = GameObject.FindGameObjectWithTag("tilemap_jail").GetComponent<Tilemap>();
+
+            PV = GetComponent<PhotonView>();
         }
 
         // Update is called once per frame
         void Update() {
+            if (!PV.IsMine)
+                return;
+
             base.Update();
             // UnityEngine.Debug.Log("position: " + transform.position);
             // UnityEngine.Debug.Log("direction: " + base.currDirection);
@@ -90,6 +101,8 @@ namespace TimeArithmetic {
 
             TileBase dt = destructableTileMap.GetTile(destructableTileMap.WorldToCell(endDest));
             TileBase it = indestructableTileMap.GetTile(indestructableTileMap.WorldToCell(endDest));
+            TileBase jt = jailTileMap.GetTile(indestructableTileMap.WorldToCell(endDest));
+
 
             if (dt == null && it == null) {
                 transform.position = endDest;
@@ -99,6 +112,7 @@ namespace TimeArithmetic {
                 endDest = transform.position + vector;
                 dt = destructableTileMap.GetTile(destructableTileMap.WorldToCell(endDest));
                 it = indestructableTileMap.GetTile(indestructableTileMap.WorldToCell(endDest));
+                jt = jailTileMap.GetTile(indestructableTileMap.WorldToCell(endDest));
 
                 if (dt == null && it == null) {
                     transform.position = endDest;

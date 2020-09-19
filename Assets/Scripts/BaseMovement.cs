@@ -53,11 +53,14 @@ public class BaseMovement : MonoBehaviour {
 
             int direct = (int) currDirection;
             Vector3 moveDir = new Vector3(directions[direct][0], directions[direct][1], 0);
+            Vector3 endPos = Vector3.zero;
             if (direct % 2 == 0) {
-                transform.position += moveDir * movementSpeed * Time.deltaTime;
+                endPos += transform.position + moveDir * movementSpeed * Time.deltaTime;
             } else {
-                transform.position += moveDir * movementSpeed * Time.deltaTime / Mathf.Sqrt(2);
+                endPos += transform.position + moveDir * movementSpeed * Time.deltaTime / Mathf.Sqrt(2);
             }
+
+            transform.position = Vector3.Lerp(transform.position, endPos, movementSpeed * Time.deltaTime);
         }
     }
 

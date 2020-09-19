@@ -7,6 +7,7 @@ public class MultiplayerSettings : MonoBehaviour {
 
     public bool delayStart;
     public int maxPlayers;
+    public int minPlayers;
     public int menuScene;
     public int multiplayerScene;
 

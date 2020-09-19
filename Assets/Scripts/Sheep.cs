@@ -6,6 +6,7 @@ using System.Diagnostics.Contracts;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Photon.Pun;
 
 public class Sheep : BaseMovement {
 
@@ -25,15 +26,22 @@ public class Sheep : BaseMovement {
         5, 3, 4, 1, 2, 0
     };
 
+    private PhotonView PV;
+
     // Start is called before the first frame update
     void Start() {
         destructableTilemap = GameObject.FindGameObjectWithTag("tilemap_destructible").GetComponent<Tilemap>();
         teleporterTilemap = GameObject.FindGameObjectWithTag("tilemap_teleporter").GetComponent<Tilemap>();
         getTeleporters();
+
+        PV = GetComponent<PhotonView>();
     }
 
     // Update is called once per frame
     void Update() {
+        if (!PV.IsMine)
+            return;
+
         base.Update();
 
         if (Input.GetKey(KeyCode.D) && canDestroyRock()) {
