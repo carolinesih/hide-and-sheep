@@ -1,18 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class GameController : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public class GameController : MonoBehaviourPunCallbacks {
+    public static List<GameObject> gameObjects;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

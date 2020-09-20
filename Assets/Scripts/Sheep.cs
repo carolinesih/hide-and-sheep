@@ -12,6 +12,7 @@ public class Sheep : BaseMovement {
 
     public Tilemap destructableTilemap;
     public Tilemap teleporterTilemap;
+    public Tilemap jailTileMap;
 
     public int rockCD;
     public int teleportCD;
@@ -26,15 +27,19 @@ public class Sheep : BaseMovement {
         5, 3, 4, 1, 2, 0
     };
 
-    private PhotonView PV;
+    public PhotonView PV;
 
     // Start is called before the first frame update
     void Start() {
         destructableTilemap = GameObject.FindGameObjectWithTag("tilemap_destructible").GetComponent<Tilemap>();
         teleporterTilemap = GameObject.FindGameObjectWithTag("tilemap_teleporter").GetComponent<Tilemap>();
+        jailTileMap = GameObject.FindGameObjectWithTag("tilemap_jail").GetComponent<Tilemap>();
         getTeleporters();
 
         PV = GetComponent<PhotonView>();
+
+        if (!PV.IsMine) return;
+        Camera.main.GetComponent<CameraFollow>().player = transform;
     }
 
     // Update is called once per frame
@@ -45,7 +50,11 @@ public class Sheep : BaseMovement {
         base.Update();
 
         if (Input.GetKey(KeyCode.D) && canDestroyRock()) {
-            DestroyRock();
+            Vector3 tile = DestroyRock();
+            UnityEngine.Debug.Log("Tile destroyed: " + tile);
+            if (tile != Vector3.zero) {
+                PV.RPC("RPC_DestroyRock", RpcTarget.All, tile);
+            }
         }
 
         if (Input.GetKey(KeyCode.F) && canTeleport()) {
@@ -57,7 +66,7 @@ public class Sheep : BaseMovement {
         return lastBreakTime.AddSeconds(rockCD) <= DateTime.Now;
     }
 
-    void DestroyRock() {
+    Vector3 DestroyRock() {
         // Destroys the rock in front of you
         UnityEngine.Debug.Log("DestroyRock Called");
         lastBreakTime = DateTime.Now;
@@ -78,7 +87,14 @@ public class Sheep : BaseMovement {
         Collider2D collision = Physics2D.OverlapCircle(new Vector2(ramPosition.x, ramPosition.y), .001f);
         if(collision != null) { //destroy rock
             destructableTilemap.SetTile(destructableTilemap.WorldToCell(ramPosition), null);
+            return ramPosition;
         }
+        return Vector3.zero;
+    }
+
+    [PunRPC]
+    void RPC_DestroyRock(Vector3 tile) {
+        destructableTilemap.SetTile(destructableTilemap.WorldToCell(tile), null);
     }
 
     bool canTeleport() {
@@ -118,10 +134,12 @@ public class Sheep : BaseMovement {
         }
     }
 
-    public void MoveToJail() {
-    	Vector3 newLocation = new Vector3((float) 2.5, (float) -1.5, 0);
-    	transform.position = newLocation;
-    	// TODO add conditions to move coords of sheep to jail
+    [PunRPC]
+    public void RPC_MoveToJail(int ViewID) {
+        if (PV.ViewID == ViewID) {
+            Vector3 newLocation = new Vector3((float)2.5, (float)-1.5, 0);
+            transform.position = newLocation;
+            // TODO add conditions to move coords of sheep to jail
+        }
     }
-
 }

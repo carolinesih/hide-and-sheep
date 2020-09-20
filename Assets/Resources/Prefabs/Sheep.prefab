@@ -139,8 +139,10 @@ MonoBehaviour:
   currDirection: 0
   destructableTilemap: {fileID: 0}
   teleporterTilemap: {fileID: 0}
+  jailTileMap: {fileID: 0}
   rockCD: 1
   teleportCD: 1
+  PV: {fileID: 0}
 --- !u!114 &7880062611212090599
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -50,7 +50,7 @@ public class PhotonLobby : MonoBehaviourPunCallbacks {
 
     void CreateRoom() {
         //UnityEngine.Debug.Log("Creating new room...");
-        string randomRoomName = "test";
+        int randomRoomName = Random.Range(0, 1000);
         RoomOptions roomOps = new RoomOptions() { IsVisible = true, IsOpen = true, MaxPlayers = (byte)MultiplayerSettings.multiplayerSettings.maxPlayers };
         //UnityEngine.Debug.Log("Created Room: "+ randomRoomName);
 

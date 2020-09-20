@@ -8,6 +8,8 @@ using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Photon.Pun;
+using Photon.Realtime;
+
 
 namespace TimeArithmetic {
     public class BoPeep : BaseMovement {
@@ -24,8 +26,7 @@ namespace TimeArithmetic {
         public Tilemap indestructableTileMap;
         public Tilemap jailTileMap;
 
-        private PhotonView PV;
-
+        public PhotonView PV;
 
         // Start is called before the first frame update
         void Start() {
@@ -34,7 +35,11 @@ namespace TimeArithmetic {
             jailTileMap = GameObject.FindGameObjectWithTag("tilemap_jail").GetComponent<Tilemap>();
 
             PV = GetComponent<PhotonView>();
+            
+            if (!PV.IsMine) return;
+            Camera.main.GetComponent<CameraFollow>().player = transform;
         }
+
 
         // Update is called once per frame
         void Update() {
@@ -77,7 +82,8 @@ namespace TimeArithmetic {
                     Math.Abs(transform.position.x - individual.transform.position.x) < hookRadius && 
                     Math.Abs(transform.position.y - individual.transform.position.y) < hookRadius) {
                     lastHookTime = DateTime.Now;
-                    individual.MoveToJail();
+
+                    individual.PV.RPC("RPC_MoveToJail", RpcTarget.All, individual.PV.ViewID);
                     return;
                 }
             }

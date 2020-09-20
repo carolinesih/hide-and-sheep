@@ -27,6 +27,8 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks {
     private float atMaxPlayers;
     private float timeToStart;
 
+    public UnityEngine.UI.Text RoomText;
+
     void Awake() {
         if (PhotonRoom.room == null) {
             PhotonRoom.room = this;
@@ -58,6 +60,8 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks {
         lessThanMaxPlayers = startingTime;
         atMaxPlayers = 6;
         timeToStart = startingTime;
+
+        RoomText = GameObject.Find("RoomName").GetComponent<UnityEngine.UI.Text>();
     }
 
     public void OnStartButton() {
@@ -114,6 +118,7 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks {
         } else {
             StartGame();
         }
+        RoomText.text = "Room Name: " + room.name + "\n# of Players: " + playersInRoom + "\nYou are player: " + myNumberInRoom;
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer) {
@@ -133,6 +138,28 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks {
                 PhotonNetwork.CurrentRoom.IsOpen = false;
             }
         }
+        RoomText.text = "Room Name: " + room.name + "\n# of Players: " + playersInRoom + "\nYou are player: " + myNumberInRoom;
+    }
+
+    public override void OnPlayerLeftRoom(Player otherPlayer) {
+        base.OnPlayerLeftRoom(otherPlayer);
+        photonPlayers = PhotonNetwork.PlayerList;
+        playersInRoom++;
+
+        if (MultiplayerSettings.multiplayerSettings.delayStart) {
+            if (playersInRoom > 1) {
+                readyToCount = true;
+            }
+
+            if (playersInRoom == MultiplayerSettings.multiplayerSettings.maxPlayers) {
+                readyToStart = true;
+                if (!PhotonNetwork.IsMasterClient) {
+                    return;
+                }
+                PhotonNetwork.CurrentRoom.IsOpen = false;
+            }
+        }
+        RoomText.text = "You are in " + room.name + " with " + playersInRoom + "other players.\n You are player " + myNumberInRoom;
     }
 
 
@@ -182,9 +209,9 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks {
     [PunRPC]
     private void RPC_CreatePlayer() {
         if (myNumberInRoom % 2 == 0) {
-            PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Bo Peep"), Vector3.zero, Quaternion.identity);
+            GameObject go = (GameObject) PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Bo Peep"), Vector3.zero, Quaternion.identity);
         } else {
-            PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Sheep"), Vector3.zero, Quaternion.identity);
+            GameObject go = (GameObject)PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Sheep"), Vector3.zero, Quaternion.identity);
         }
     }
 }

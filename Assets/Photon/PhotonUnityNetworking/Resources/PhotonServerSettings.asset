@@ -37,6 +37,8 @@ MonoBehaviour:
   - DestroyRpc
   - RPC_CreatePlayer
   - RPC_LoadedGameScene
+  - RPC_MoveToJail
+  - RPC_DestroyRock
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

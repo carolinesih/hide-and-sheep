@@ -139,12 +139,13 @@ MonoBehaviour:
   currDirection: 0
   flashRange: 1.5
   flashCD: 1
-  hookCD: 0
-  hookRadius: 0
-  hookWidth: 0
+  hookCD: 1
+  hookRadius: 1
+  hookWidth: 1
   destructableTileMap: {fileID: 0}
   indestructableTileMap: {fileID: 0}
   jailTileMap: {fileID: 0}
+  PV: {fileID: 0}
 --- !u!114 &2688401009382023534
 MonoBehaviour:
   m_ObjectHideFlags: 0

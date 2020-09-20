@@ -60,7 +60,7 @@ public class BaseMovement : MonoBehaviour {
                 endPos += transform.position + moveDir * movementSpeed * Time.deltaTime / Mathf.Sqrt(2);
             }
 
-            transform.position = Vector3.Lerp(transform.position, endPos, movementSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, endPos, movementSpeed * Time.deltaTime);
         }
     }
 
