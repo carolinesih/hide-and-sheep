@@ -1,0 +1,419 @@
+fileFormatVersion: 2
+guid: b2d8a7668b3a1d83386bad296098a728
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5055414845858029489
+    second: terrain_atlas_full_0
+  - first:
+      213: -677171079150509317
+    second: leaves1
+  - first:
+      213: 6739964230389558246
+    second: terrain_atlas_full_2
+  - first:
+      213: -4107537857667014207
+    second: leaves2
+  - first:
+      213: -5829509855316458944
+    second: terrain_atlas_full_4
+  - first:
+      213: 2044934312266254426
+    second: terrain_atlas_full_5
+  - first:
+      213: -7891372926297074981
+    second: terrain_atlas_full_6
+  - first:
+      213: 6590259469258884730
+    second: terrain_atlas_full_7
+  - first:
+      213: -5038824047042952814
+    second: leaves3
+  - first:
+      213: 6426036710365041511
+    second: terrain_atlas_full_9
+  - first:
+      213: -3382552258298881760
+    second: leaves4
+  - first:
+      213: -6516491200759177553
+    second: terrain_atlas_full_11
+  - first:
+      213: -9085748650829034181
+    second: terrain_atlas_full_12
+  - first:
+      213: 4573883161609441482
+    second: terrain_atlas_full_13
+  - first:
+      213: -3475057940409833865
+    second: terrain_atlas_full_14
+  - first:
+      213: 1405116596422075099
+    second: terrain_atlas_full_15
+  - first:
+      213: -1714125805438717884
+    second: terrain_atlas_full_16
+  - first:
+      213: -1133305102177021210
+    second: terrain_atlas_full_17
+  - first:
+      213: 2555098733939226493
+    second: terrain_atlas_full_18
+  - first:
+      213: 4148496950216263363
+    second: terrain_atlas_full_19
+  - first:
+      213: -7626278313840350618
+    second: terrain_atlas_full_20
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 44
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: terrain_atlas_full_0
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 181
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bf9a9f7401782640800000000000000
+      internalID: 5055414845858029489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: leaves1
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 181
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf2e017cd743a96f0800000000000000
+      internalID: -677171079150509317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: terrain_atlas_full_2
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 149
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6eb6537f1c9298d50800000000000000
+      internalID: 6739964230389558246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: leaves2
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 149
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c1e944c4181ff6c0800000000000000
+      internalID: -4107537857667014207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: terrain_atlas_full_4
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 117
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04249333cab691fa0800000000000000
+      internalID: -5829509855316458944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: terrain_atlas_full_5
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 117
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5843a72ce0116c10800000000000000
+      internalID: 2044934312266254426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: terrain_atlas_full_6
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 85
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd29de142263c7290800000000000000
+      internalID: -7891372926297074981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: terrain_atlas_full_7
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 85
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7684d2121e457b50800000000000000
+      internalID: 6590259469258884730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: leaves3
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 53
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2910f4ed930821ab0800000000000000
+      internalID: -5038824047042952814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: terrain_atlas_full_9
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 53
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7639dea675edd2950800000000000000
+      internalID: 6426036710365041511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: leaves4
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 21
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02956e184a2ce01d0800000000000000
+      internalID: -3382552258298881760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: terrain_atlas_full_11
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 21
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fae5acc57c5c095a0800000000000000
+      internalID: -6516491200759177553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
