@@ -39,6 +39,8 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks {
             }
         }
         DontDestroyOnLoad(this.gameObject);
+
+        RoomText = GameObject.Find("RoomName").GetComponent<UnityEngine.UI.Text>();
     }
 
     public override void OnEnable() {
@@ -60,8 +62,6 @@ public class PhotonRoom : MonoBehaviourPunCallbacks, IInRoomCallbacks {
         lessThanMaxPlayers = startingTime;
         atMaxPlayers = 6;
         timeToStart = startingTime;
-
-        RoomText = GameObject.Find("RoomName").GetComponent<UnityEngine.UI.Text>();
     }
 
     public void OnStartButton() {
