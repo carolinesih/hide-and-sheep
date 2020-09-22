@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.Tilemaps;
 using Photon.Pun;
 
@@ -16,6 +17,7 @@ public class Sheep : BaseMovement {
 
     public int rockCD;
     public int teleportCD;
+    public int viewRadius;
 
     private DateTime lastBreakTime = DateTime.Now;
     private DateTime lastTPTime = DateTime.Now;
@@ -27,6 +29,8 @@ public class Sheep : BaseMovement {
         5, 3, 4, 1, 2, 0
     };
 
+    public Light2D playerLight;
+
     public PhotonView PV;
 
     // Start is called before the first frame update
@@ -36,10 +40,13 @@ public class Sheep : BaseMovement {
         jailTileMap = GameObject.FindGameObjectWithTag("tilemap_jail").GetComponent<Tilemap>();
         getTeleporters();
 
+        playerLight = GetComponent<Light2D>();
         PV = GetComponent<PhotonView>();
 
         if (!PV.IsMine) return;
         Camera.main.GetComponent<CameraFollow>().player = transform;
+        playerLight.intensity = 0.7f;
+        playerLight.pointLightOuterRadius = viewRadius;
     }
 
     // Update is called once per frame

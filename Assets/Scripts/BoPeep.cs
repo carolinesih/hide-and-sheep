@@ -6,6 +6,7 @@ using System.Diagnostics.Contracts;
 using System.Net.NetworkInformation;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.Tilemaps;
 using Photon.Pun;
 using Photon.Realtime;
@@ -19,6 +20,8 @@ namespace TimeArithmetic {
         public int hookCD; // in seconds
         public int hookRadius; // radius hook can reach
         public int hookWidth; // width of range hook can reach (ex. 30 degrees)
+        public int viewRadius; // distance you can view
+        
         private DateTime lastFlashTime = DateTime.Now;
         private DateTime lastHookTime = DateTime.Now;
 
@@ -26,6 +29,7 @@ namespace TimeArithmetic {
         public Tilemap indestructableTileMap;
         public Tilemap jailTileMap;
 
+        public Light2D playerLight;
         public PhotonView PV;
 
         // Start is called before the first frame update
@@ -34,10 +38,13 @@ namespace TimeArithmetic {
             indestructableTileMap = GameObject.FindGameObjectWithTag("tilemap_indestructible").GetComponent<Tilemap>();
             jailTileMap = GameObject.FindGameObjectWithTag("tilemap_jail").GetComponent<Tilemap>();
 
+            playerLight = GetComponent<Light2D>();
             PV = GetComponent<PhotonView>();
             
             if (!PV.IsMine) return;
             Camera.main.GetComponent<CameraFollow>().player = transform;
+            playerLight.intensity = 0.7f;
+            playerLight.pointLightOuterRadius = viewRadius;
         }
 
 
